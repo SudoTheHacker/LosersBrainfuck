@@ -11,7 +11,7 @@
 # Known problem: No comment support
 
 
-code = "i'p'.v'p'>>>>>i'3'.g'p'+." # set in ascii the letter p then made a variable with the name p then moved to slot 5 set 3 printed 3 and got back to our variable position
+code = "i'p'.v'p'>>>>>i'3'.g'p'+[." # set in ascii the letter p then made a variable with the name p then moved to slot 5 set 3 printed 3 and got back to our variable position
 
 # input currently limited to this since i dont know how to not pause the loop and dont want to search its like 1:40 am
 
@@ -24,7 +24,6 @@ while x != num:
     x = x + 1
 x = 0
 
-char_code = {}
 code_lenght = len(code)
 
 blocks = {}
@@ -117,4 +116,13 @@ while x != code_lenght:
             goto = True
         if code[x] == 'q':
             exit()
+        if code[x] == '[':
+            y = x
+            while x <= code_lenght:
+                if code[x-1] != ']':
+                    break
+                x = x + 1
+            if blocks[block_pos] != 0:
+                x = y
+            y = 0
     x = x + 1
