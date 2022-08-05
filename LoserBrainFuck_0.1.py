@@ -10,9 +10,9 @@
 
 # Known problem: No comment support
 
-
-code = "i'a'."
-
+# file = open("script.lbf", 'r')
+# code = str(file.readlines())
+code = ""
 num = int(input("num of input: "))
 list_input = {}
 input_pos = 0
@@ -40,14 +40,11 @@ insert_start = False
 goto = False
 goto_pos = 0
 
-while_loop = False
-loop_end = 0
-
-while x != code_lenght:
+x = 0
+def action():
     if block_pos not in block_set:
-      blocks[block_pos] = 0
-      block_set[block_pos] = block_pos
-      print(blocks[block_pos])
+        blocks[block_pos] = 0
+        block_set[block_pos] = block_pos
     # Insert function
     if insert == True:
         if code[x] == "'" and insert_start == True:
@@ -98,35 +95,8 @@ while x != code_lenght:
             else:
                 print("Error: Please use like this g'variable name'")
                 exit()
-    # While loop
-    if while_loop == True:
-        while blocks[block_pos] != 0:
-            if code[y] == "i":
-                insert = True
-            if code[y] == '>':
-                block_pos = block_pos+1
-            if code[y] == '<':
-                block_pos = block_pos-1
-            if code[y] == '+':
-                blocks[block_pos] = blocks[block_pos] + 1
-            if code[y] == '-':
-                blocks[block_pos] = blocks[block_pos] - 1
-            if code[y] == ',':
-                blocks[block_pos] = ord(list_input[input_pos])
-                input_pos = input_pos + 1
-            if code[y] == '.':
-                print(chr(blocks[block_pos]), end="")
-            if code[y] == 'v':
-                vinsert = True
-            if code[y] == 'g':
-                goto = True
-            if code[y] == 'q':
-                exit()
-            if y != loop_end:
-                y=y+1
-
     # Code reading
-    if insert == False and vinsert == False and goto == False and while_loop == False:
+    if insert == False and vinsert == False and goto == False:
         if code[x] == "i":
             insert = True
         if code[x] == '>':
@@ -148,16 +118,14 @@ while x != code_lenght:
             goto = True
         if code[x] == 'q':
             exit()
-        if code[x] == '[':
-            y = x
-            while x <= code_lenght:
-                if code[x-1] != ']':
-                    break
-                x = x + 1
-            if blocks[block_pos] != 0:
-                loop_end = x
-                x = y
-                while_loop = True
-            y = 0
     x = x + 1
+print()
+
+class while_loop:
+  loop_start = 0
+  loop_end = 0
+  def startLoop():
+      action()
+while x != code_lenght:
+    action()
 print()
