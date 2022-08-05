@@ -11,9 +11,7 @@
 # Known problem: No comment support
 
 
-code = "i'h'.>i'i'." # set in ascii the letter p then made a variable with the name p then moved to slot 5 set 3 printed 3 and got back to our variable position
-
-# input currently limited to this since i dont know how to not pause the loop and dont want to search its like 1:40 am
+code = "+"
 
 num = int(input("num of input: "))
 list_input = {}
@@ -26,13 +24,13 @@ x = 0
 
 code_lenght = len(code)
 
-blocks = {}
+blocks = []
 block_pos = 0
 
 vinsert = False
 vname = ""
-variables = {}
-variables_name = {}
+variables = []
+variables_name = []
 variable_pos = 0
 
 insert = False
