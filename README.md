@@ -12,3 +12,7 @@ g"NO spaces tho" to go to your variable
 [What to expect on finished product]
 Library support
 ...
+
+
+
+Compile by putting your source code in the code variable and starting the program with python3
