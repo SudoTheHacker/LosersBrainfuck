@@ -11,7 +11,7 @@
 # Known problem: No comment support
 
 
-code = "+"
+code = "i'a'."
 
 num = int(input("num of input: "))
 list_input = {}
@@ -24,13 +24,14 @@ x = 0
 
 code_lenght = len(code)
 
-blocks = []
+blocks = {}
 block_pos = 0
+block_set = {}
 
 vinsert = False
 vname = ""
-variables = []
-variables_name = []
+variables = {}
+variables_name = {}
 variable_pos = 0
 
 insert = False
@@ -43,6 +44,10 @@ while_loop = False
 loop_end = 0
 
 while x != code_lenght:
+    if block_pos not in block_set:
+      blocks[block_pos] = 0
+      block_set[block_pos] = block_pos
+      print(blocks[block_pos])
     # Insert function
     if insert == True:
         if code[x] == "'" and insert_start == True:
