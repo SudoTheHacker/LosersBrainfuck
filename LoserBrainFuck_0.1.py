@@ -6,12 +6,12 @@
 # i to insert char
 # v to make variable
 # g"NO spaces tho" to go to your variable
-# [() kinda self explantory
+# [() kinda self explantory Delayed because its 2:30 am
 
 # Known problem: No comment support
 
 
-code = "i'p'.v'p'>>>>>i'3'.g'p'+[." # set in ascii the letter p then made a variable with the name p then moved to slot 5 set 3 printed 3 and got back to our variable position
+code = "i'h'.>i'i'." # set in ascii the letter p then made a variable with the name p then moved to slot 5 set 3 printed 3 and got back to our variable position
 
 # input currently limited to this since i dont know how to not pause the loop and dont want to search its like 1:40 am
 
@@ -41,6 +41,8 @@ insert_start = False
 goto = False
 goto_pos = 0
 
+while_loop = False
+loop_end = 0
 
 while x != code_lenght:
     # Insert function
@@ -93,8 +95,35 @@ while x != code_lenght:
             else:
                 print("Error: Please use like this g'variable name'")
                 exit()
+    # While loop
+    if while_loop == True:
+        while blocks[block_pos] != 0:
+            if code[y] == "i":
+                insert = True
+            if code[y] == '>':
+                block_pos = block_pos+1
+            if code[y] == '<':
+                block_pos = block_pos-1
+            if code[y] == '+':
+                blocks[block_pos] = blocks[block_pos] + 1
+            if code[y] == '-':
+                blocks[block_pos] = blocks[block_pos] - 1
+            if code[y] == ',':
+                blocks[block_pos] = ord(list_input[input_pos])
+                input_pos = input_pos + 1
+            if code[y] == '.':
+                print(chr(blocks[block_pos]), end="")
+            if code[y] == 'v':
+                vinsert = True
+            if code[y] == 'g':
+                goto = True
+            if code[y] == 'q':
+                exit()
+            if y != loop_end:
+                y=y+1
+
     # Code reading
-    if insert == False and vinsert == False and goto == False:
+    if insert == False and vinsert == False and goto == False and while_loop == False:
         if code[x] == "i":
             insert = True
         if code[x] == '>':
@@ -109,7 +138,7 @@ while x != code_lenght:
             blocks[block_pos] = ord(list_input[input_pos])
             input_pos = input_pos + 1
         if code[x] == '.':
-            print(chr(blocks[block_pos]))
+            print(chr(blocks[block_pos]), end="")
         if code[x] == 'v':
             vinsert = True
         if code[x] == 'g':
@@ -123,6 +152,9 @@ while x != code_lenght:
                     break
                 x = x + 1
             if blocks[block_pos] != 0:
+                loop_end = x
                 x = y
+                while_loop = True
             y = 0
     x = x + 1
+print()
