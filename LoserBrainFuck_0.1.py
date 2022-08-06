@@ -1,18 +1,8 @@
-# Version 0.1 (pc for proof of concept)
+file = open("script.lbf", 'r')
+code = str(file.readlines())
+# code = "-[------->+<]>-.-[->+++++<]>++.+++++++..+++.[--->+<]>-----.---[->+++<]>.-[--->+<]>---.+++.------.--------."
+code_lenght = len(code)
 
-
-# Losers brainfuck for the one that dont have the time
-# What's new
-# i to insert char
-# v to make variable
-# g"NO spaces tho" to go to your variable
-# [() kinda self explantory Delayed because its 2:30 am
-
-# Known problem: No comment support
-
-# file = open("script.lbf", 'r')
-# code = str(file.readlines())
-code = "++++[[-.].]"
 num = int(input("num of input: "))
 list_input = {}
 input_pos = 0
@@ -20,9 +10,6 @@ x = 0
 while x != num:
     list_input[x] = input("input: ")
     x = x + 1
-x = 0
-
-code_lenght = len(code)
 
 blocks = {}
 block_pos = 0
@@ -47,7 +34,7 @@ x = 0
 while x != code_lenght:
     if code[x] == ']':
         if blocks[block_pos] == 0:
-            x = x + 1
+            pass
         else:
             x = loopStart[loopPos]
     if block_pos not in block_set:
@@ -115,8 +102,8 @@ while x != code_lenght:
             blocks[block_pos] = ord(list_input[input_pos])
             input_pos = input_pos + 1
         if code[x] == '.':
-            # print(chr(blocks[block_pos]), end="")
-            print(blocks[block_pos])
+            print(chr(blocks[block_pos]), end="")
+            # print(blocks[block_pos])
         if code[x] == 'v':
             vinsert = True
         if code[x] == 'g':
