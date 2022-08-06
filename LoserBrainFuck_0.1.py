@@ -1,4 +1,4 @@
-# Version 0.1
+# Version 0.1 (pc for proof of concept)
 
 
 # Losers brainfuck for the one that dont have the time
@@ -12,15 +12,15 @@
 
 # file = open("script.lbf", 'r')
 # code = str(file.readlines())
-code = "i'h'.>i'e'."
-# num = int(input("num of input: "))
-# list_input = {}
-# input_pos = 0
-# x = 0
-# while x != num:
-#     list_input[x] = input("input: ")
-#     x = x + 1
-# x = 0
+code = "++++[[-.].]"
+num = int(input("num of input: "))
+list_input = {}
+input_pos = 0
+x = 0
+while x != num:
+    list_input[x] = input("input: ")
+    x = x + 1
+x = 0
 
 code_lenght = len(code)
 
@@ -40,9 +40,16 @@ insert_start = False
 goto = False
 goto_pos = 0
 
+loopStart = {}
+loopPos = 0
+
 x = 0
-def action():
-    global block_pos, block_set, insert, insert_start, vinsert, goto, goto_pos, x, list_input
+while x != code_lenght:
+    if code[x] == ']':
+        if blocks[block_pos] == 0:
+            x = x + 1
+        else:
+            x = loopStart[loopPos]
     if block_pos not in block_set:
         blocks[block_pos] = 0
         block_set[block_pos] = block_pos
@@ -94,7 +101,7 @@ def action():
                 exit()
     # Code reading
     if insert == False and vinsert == False and goto == False:
-        if code[x] == "i":
+        if code[x] == 'i':
             insert = True
         if code[x] == '>':
             block_pos = block_pos+1
@@ -108,23 +115,16 @@ def action():
             blocks[block_pos] = ord(list_input[input_pos])
             input_pos = input_pos + 1
         if code[x] == '.':
-            print(chr(blocks[block_pos]), end="")
+            # print(chr(blocks[block_pos]), end="")
+            print(blocks[block_pos])
         if code[x] == 'v':
             vinsert = True
         if code[x] == 'g':
             goto = True
         if code[x] == 'q':
             exit()
-        if code[x] == "[":
-            pass
+        if code[x] == '[':
+            loopPos = loopPos + 1
+            loopStart[loopPos] = x+1
     x = x + 1
-print()
-
-class while_loop:
-  loop_start = 0
-  loop_end = 0
-  def startLoop():
-      action()
-while x != code_lenght:
-    action()
 print()
