@@ -1,4 +1,4 @@
-# Version 0.1 (pc for proof of concept)
+# Version 0.1
 
 
 # Losers brainfuck for the one that dont have the time
