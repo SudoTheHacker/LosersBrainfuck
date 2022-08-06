@@ -12,15 +12,15 @@
 
 # file = open("script.lbf", 'r')
 # code = str(file.readlines())
-code = ""
-num = int(input("num of input: "))
-list_input = {}
-input_pos = 0
-x = 0
-while x != num:
-    list_input[x] = input("input: ")
-    x = x + 1
-x = 0
+code = "i'h'.>i'e'."
+# num = int(input("num of input: "))
+# list_input = {}
+# input_pos = 0
+# x = 0
+# while x != num:
+#     list_input[x] = input("input: ")
+#     x = x + 1
+# x = 0
 
 code_lenght = len(code)
 
@@ -42,22 +42,19 @@ goto_pos = 0
 
 x = 0
 def action():
+    global block_pos, block_set, insert, insert_start, vinsert, goto, goto_pos, x, list_input
     if block_pos not in block_set:
         blocks[block_pos] = 0
         block_set[block_pos] = block_pos
     # Insert function
     if insert == True:
-        if code[x] == "'" and insert_start == True:
-            blocks[block_pos] = ord(code[x-1])
+        if code[x] == "'":
+            blocks[block_pos] = ord(code[x+1])
+            x = x + 2
             insert = False
-            insert_start = False
-    
-        if insert_start == False:
-            if code[x] == "'":
-                insert_start = True
-            else:
-                print("Error: Please use like this i'only one character'")
-                exit()
+        else:
+            print("Error: Please use like this i'only one character'")
+            exit()
     # insert/create new variable
     if vinsert == True:
         if code[x] == "'" and insert_start == True:
@@ -67,7 +64,7 @@ def action():
             vinsert = False
             insert_start = False
             variable_pos = variable_pos + 1
-        if insert_start:
+        if insert_start and code[x] != "'":
             vname = vname + str(code[x])
         if insert_start == False:
             if code[x] == "'":
@@ -118,6 +115,8 @@ def action():
             goto = True
         if code[x] == 'q':
             exit()
+        if code[x] == "[":
+            pass
     x = x + 1
 print()
 
